@@ -110,6 +110,106 @@ body {
   color: #000000;
 }
 
+/* ===================== GET IN TOUCH FORM ===================== */
+.get-in-touch-section {
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+}
+
+.get-in-touch-heading {
+  font-family: "Bodoni Moda", "MuseoModerno", cursive, sans-serif;
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+}
+
+.get-in-touch-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 640px;
+}
+
+.gf-field {
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid #000000;
+  padding-left: 1.2rem;
+}
+
+.gf-label {
+  font-family: "Bodoni Moda", "MuseoModerno", cursive, sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+  color: #000000;
+}
+
+.gf-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #00000055;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #000000;
+  padding: 0.4rem 0;
+  transition: border-bottom 0.2s ease;
+}
+
+.gf-input::placeholder {
+  color: #00000055;
+}
+
+.gf-input:focus {
+  border-bottom: 1px solid #000000;
+}
+
+.gf-textarea {
+  resize: none;
+  min-height: 120px;
+}
+
+.gf-submit {
+  align-self: flex-start;
+  background: #000000;
+  color: #eee7e1;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  padding: 0.7rem 2.2rem;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.gf-submit:hover {
+  background: #eee7e1;
+  color: #000000;
+  outline: 1px solid #000000;
+}
+
+.gf-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.gf-status {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #000000;
+  min-height: 1.2rem;
+  margin: 0;
+}
+
+.gf-status.success {
+  color: #2d6a4f;
+}
+
+.gf-status.error {
+  color: #c0392b;
+}
+
 /* ===================== MOBILE ===================== */
 @media (max-width: 768px) {
   .main-aside {
@@ -144,5 +244,13 @@ body {
 
   .contact-a {
     font-size: 0.9rem;
+  }
+
+  .get-in-touch-heading {
+    font-size: 2rem;
+  }
+  
+  .get-in-touch-form {
+    max-width: 100%;
   }
 }
