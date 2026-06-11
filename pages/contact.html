@@ -112,7 +112,11 @@
             </div>
         
             <button class="gf-submit" id="gf-btn" onclick="handleGFSubmit()">Send Message</button>
-            <p class="gf-status" id="gf-status"></p>
+            <div id="gf-toast" class="gf-toast" style="display:none;">
+              <span id="gf-toast-msg"></span>
+              <button class="gf-toast-close" onclick="closeToast()">✕</button>
+              <div class="gf-toast-bar" id="gf-toast-bar"></div>
+            </div>
         
           </div>
         </div>
@@ -163,33 +167,55 @@
   <script>
     emailjs.init("MCv-LMlzukwj61y_J");
   
+    let toastTimer = null;
+  
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('gf-toast');
+      const msg   = document.getElementById('gf-toast-msg');
+      const bar   = document.getElementById('gf-toast-bar');
+  
+      // Reset
+      toast.className = 'gf-toast' + (isError ? ' error' : '');
+      msg.textContent = message;
+  
+      // Restart bar animation
+      bar.style.animation = 'none';
+      bar.offsetHeight; // force reflow
+      bar.style.animation = 'toastBar 4s linear forwards';
+  
+      toast.style.display = 'block';
+  
+      // Clear previous timer
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => closeToast(), 4000);
+    }
+  
+    function closeToast() {
+      const toast = document.getElementById('gf-toast');
+      toast.style.display = 'none';
+      if (toastTimer) clearTimeout(toastTimer);
+    }
+  
     function handleGFSubmit() {
       const name    = document.getElementById('gf-name').value.trim();
       const email   = document.getElementById('gf-email').value.trim();
       const contact = document.getElementById('gf-contact').value.trim();
       const message = document.getElementById('gf-message').value.trim();
-      const status  = document.getElementById('gf-status');
       const btn     = document.getElementById('gf-btn');
   
-      // Basic validation
       if (!name || !email || !message) {
-        status.className = 'gf-status error';
-        status.textContent = 'Please fill in Name, Email and Message.';
+        showToast('✗ Please fill in Name, Email and Message.', true);
         return;
       }
   
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        status.className = 'gf-status error';
-        status.textContent = 'Please enter a valid email address.';
+        showToast('✗ Please enter a valid email address.', true);
         return;
       }
   
-      // Disable button while sending
       btn.disabled = true;
       btn.textContent = 'Sending...';
-      status.className = 'gf-status';
-      status.textContent = '';
   
       const templateParams = {
         name:    name,
@@ -201,19 +227,16 @@
   
       emailjs.send("service_gy9e6tq", "template_l9g2v3l", templateParams)
         .then(() => {
-          status.className = 'gf-status success';
-          status.textContent = '✓ Message sent! I\'ll get back to you soon.';
+          showToast('✓ Message sent! I\'ll get back to you soon.', false);
           btn.textContent = 'Send Message';
           btn.disabled = false;
-          // Clear fields
           document.getElementById('gf-name').value    = '';
           document.getElementById('gf-email').value   = '';
           document.getElementById('gf-contact').value = '';
           document.getElementById('gf-message').value = '';
         })
         .catch((err) => {
-          status.className = 'gf-status error';
-          status.textContent = '✗ Something went wrong. Please try again.';
+          showToast('✗ Something went wrong. Please try again.', true);
           btn.textContent = 'Send Message';
           btn.disabled = false;
           console.error('EmailJS error:', err);
