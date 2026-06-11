@@ -210,6 +210,68 @@ body {
   color: #c0392b;
 }
 
+/* ===================== TOAST NOTIFICATION ===================== */
+.gf-toast {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  min-width: 280px;
+  max-width: 360px;
+  background: #000000;
+  color: #eee7e1;
+  padding: 1.2rem 1.5rem 0.5rem 1.5rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  z-index: 9999;
+  box-shadow: 4px 4px 0px #00000033;
+  animation: toastIn 0.3s ease;
+}
+
+.gf-toast.error {
+  background: #c0392b;
+}
+
+.gf-toast-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.8rem;
+  background: transparent;
+  border: none;
+  color: #eee7e1;
+  font-size: 0.9rem;
+  cursor: pointer;
+  opacity: 0.7;
+  padding: 0;
+}
+
+.gf-toast-close:hover {
+  opacity: 1;
+}
+
+.gf-toast-bar {
+  height: 2px;
+  background: #eee7e1;
+  margin-top: 1rem;
+  width: 100%;
+  transform-origin: left;
+  animation: toastBar 4s linear forwards;
+}
+
+.gf-toast.error .gf-toast-bar {
+  background: #ffaaaa;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastBar {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}
+
 /* ===================== MOBILE ===================== */
 @media (max-width: 768px) {
   .main-aside {
@@ -252,5 +314,14 @@ body {
   
   .get-in-touch-form {
     max-width: 100%;
+  }
+
+  .gf-toast {
+    top: auto;
+    bottom: 1.5rem;
+    right: 1rem;
+    left: 1rem;
+    min-width: unset;
+    max-width: unset;
   }
 }
