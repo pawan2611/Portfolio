@@ -1117,8 +1117,12 @@ a {
   padding: 0.9rem 1.1rem;
   font-size: 0.88rem;
   color: var(--text);
-  position: relative;
-  overflow: hidden;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  min-width: 320px;
+  max-width: 420px;
 }
 
 .toast.error {
