@@ -5,7 +5,7 @@ const aiProjects = [
     title: 'Saathi — AI Senior Life OS',
     techs: ['Gemini AI', 'Web Speech API', 'Firebase', 'Median'],
     category: 'ai',
-    desc: 'A voice-first AI companion built for India\'s 140M+ senior citizens living alone or far from family. Combines a Hinglish voice companion, medicine reminders, one-tap SOS, and a family dashboard — no typing or English required. Built for the Redrob × Hack2Skill "India.Runs" hackathon (Track 3 — Everyday AI Innovation Challenge). Gemini AI powers the conversational intent and SOS logic, Web Speech API handles voice in/out, and Firebase stores vitals and medicine logs. Packaged into an Android app with Median, backed by a separate Node/Express proxy so the Gemini API key stays server-side.',
+    desc: '140 million seniors. Zero real solutions. Saathi is a voice-first AI companion built for India\'s elderly living alone or far from family — combining a Hinglish voice companion, medicine reminders, one-tap SOS, and a family dashboard, no typing or English required. Built for the Redrob × Hack2Skill "India.Runs" hackathon (Track 3 — Everyday AI Innovation Challenge). Gemini AI powers the conversational intent and SOS logic, Web Speech API handles voice in/out, and Firebase stores vitals and medicine logs. Packaged into an Android app with Median, backed by a separate Node/Express proxy so the Gemini API key stays server-side.',
     github: 'https://github.com/pawan2611/SAATHI',
     proxy: 'https://github.com/pawan2611/Saathi-Proxy',
     live: 'https://pawan2611.github.io/SAATHI/',
@@ -97,40 +97,47 @@ const webProjects = [
   },
 ];
 
-const all = [...pythonProjects, ...webProjects];
-const FILTERS = ['All', 'Python', 'Web'];
+const all = [...pythonProjects, ...webProjects, ...aiProjects];
+const FILTERS = ['All', 'Python', 'Web', 'AI'];
 
 function ProjectCard({ project }) {
   const isPython = project.category === 'python';
-  const linkUrl = project.github || project.live;
-  const linkLabel = project.github ? 'GitHub ↗' : 'Live ↗';
-
-  
+  const isAI = project.category === 'ai';
+  const dotClass = isPython ? 'dot-python' : isAI ? 'dot-ai' : 'dot-web';
 
   const links = [
-  project.github && { href: project.github, label: 'GitHub ↗' },
-  project.proxy && { href: project.proxy, label: 'Proxy API ↗' },
-  project.live && { href: project.live, label: 'Live ↗' },
-  project.demo && { href: project.demo, label: 'Demo (6 min) ↗' },
-].filter(Boolean);
+    project.github && { href: project.github, label: 'GitHub ↗' },
+    project.proxy && { href: project.proxy, label: 'Proxy API ↗' },
+    project.live && { href: project.live, label: 'Live ↗' },
+    project.demo && { href: project.demo, label: 'Demo (6 min) ↗' },
+  ].filter(Boolean);
 
   return (
     <div className="project-card">
       <div className="project-card-top">
-        <span className={`project-category-dot ${isPython ? 'dot-python' : 'dot-web'}`} />
+        <span className={`project-category-dot ${dotClass}`} />
         <span className="project-title">{project.title}</span>
-        <a href={linkUrl} target="_blank" rel="noreferrer" className="project-link-icon" title={linkLabel}>
-          <img src="/box-arrow-up-right.svg" alt="Open" />
-        </a>
       </div>
 
       <p className="project-desc">{project.desc}</p>
+
+      {project.note && <p className="project-note">{project.note}</p>}
 
       <div className="project-techs">
         {project.techs.map((t) => (
           <span key={t} className="tech-chip">{t}</span>
         ))}
       </div>
+
+      {links.length > 0 && (
+        <div className="project-links-row">
+          {links.map((l) => (
+            <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="project-link-text">
+              {l.label}
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -138,11 +145,11 @@ function ProjectCard({ project }) {
 function Projects() {
   const [filter, setFilter] = useState('All');
 
-  const visible = filter === 'All'
-    ? all
-    : filter === 'Python'
-      ? pythonProjects
-      : webProjects;
+  const visible =
+    filter === 'All' ? all :
+    filter === 'Python' ? pythonProjects :
+    filter === 'AI' ? aiProjects :
+    webProjects;
 
   return (
     <div className="page-shell">
@@ -177,11 +184,11 @@ function Projects() {
             {f}
           </button>
         ))}
-        {/*
+        {
         <span className="project-count-badge">
           {visible.length} project{visible.length !== 1 ? 's' : ''}
         </span>
-        */}
+        }
       </div>
 
       <div className="project-grid">
