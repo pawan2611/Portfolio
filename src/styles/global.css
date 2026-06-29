@@ -912,6 +912,10 @@ a {
   background: #F7DF1E;
 }
 
+.dot-ai {
+  background: #fa170f;
+}
+
 .project-title {
   font-family: var(--font-display);
   font-size: 1.15rem;

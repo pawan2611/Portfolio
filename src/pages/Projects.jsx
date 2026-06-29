@@ -109,7 +109,7 @@ function ProjectCard({ project }) {
     project.github && { href: project.github, label: 'GitHub ↗' },
     project.proxy && { href: project.proxy, label: 'Proxy API ↗' },
     project.live && { href: project.live, label: 'Live ↗' },
-    project.demo && { href: project.demo, label: 'Demo (6 min) ↗' },
+    project.demo && { href: project.demo, label: 'Demo ↗' },
   ].filter(Boolean);
 
   return (
