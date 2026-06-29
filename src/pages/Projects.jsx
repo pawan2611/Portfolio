@@ -1,5 +1,19 @@
 import React, { useState } from 'react';
 
+const aiProjects = [
+  {
+    title: 'Saathi — AI Senior Life OS',
+    techs: ['Gemini AI', 'Web Speech API', 'Firebase', 'Median'],
+    category: 'ai',
+    desc: 'A voice-first AI companion built for India\'s 140M+ senior citizens living alone or far from family. Combines a Hinglish voice companion, medicine reminders, one-tap SOS, and a family dashboard — no typing or English required. Built for the Redrob × Hack2Skill "India.Runs" hackathon (Track 3 — Everyday AI Innovation Challenge). Gemini AI powers the conversational intent and SOS logic, Web Speech API handles voice in/out, and Firebase stores vitals and medicine logs. Packaged into an Android app with Median, backed by a separate Node/Express proxy so the Gemini API key stays server-side.',
+    github: 'https://github.com/pawan2611/SAATHI',
+    proxy: 'https://github.com/pawan2611/Saathi-Proxy',
+    live: 'https://pawan2611.github.io/SAATHI/',
+    demo: 'https://drive.google.com/file/d/1Trmq_x7TeeTYOPm-FXU7IULvjmEBsL0p/view',
+    note: 'APK available in the main repo',
+  },
+];
+
 const pythonProjects = [
   {
     title: 'Railway Reservation System',
@@ -87,9 +101,12 @@ const all = [...pythonProjects, ...webProjects];
 const FILTERS = ['All', 'Python', 'Web'];
 
 function ProjectCard({ project }) {
-  const isPython = project.category === 'python';
-  const linkUrl = project.github || project.live;
-  const linkLabel = project.github ? 'GitHub ↗' : 'Live ↗';
+  const links = [
+  project.github && { href: project.github, label: 'GitHub ↗' },
+  project.proxy && { href: project.proxy, label: 'Proxy API ↗' },
+  project.live && { href: project.live, label: 'Live ↗' },
+  project.demo && { href: project.demo, label: 'Demo (6 min) ↗' },
+].filter(Boolean);
 
   return (
     <div className="project-card">
