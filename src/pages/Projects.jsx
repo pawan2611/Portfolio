@@ -5,7 +5,7 @@ const aiProjects = [
     title: 'Saathi — AI Senior Life OS',
     techs: ['Gemini AI', 'Web Speech API', 'Firebase', 'Median'],
     category: 'ai',
-    desc: '140 million seniors. Zero real solutions. Saathi is a voice-first AI companion built for India\'s elderly living alone or far from family — combining a Hinglish voice companion, medicine reminders, one-tap SOS, and a family dashboard, no typing or English required. Built for the Redrob × Hack2Skill "India.Runs" hackathon (Track 3 — Everyday AI Innovation Challenge). Gemini AI powers the conversational intent and SOS logic, Web Speech API handles voice in/out, and Firebase stores vitals and medicine logs. Packaged into an Android app with Median, backed by a separate Node/Express proxy so the Gemini API key stays server-side.',
+    desc: "140 million seniors. Zero real solutions. Saathi is a voice-first AI companion that helps India's elderly manage medicines, reach SOS help, and stay connected to family — all in Hinglish, no typing required. Built for the Redrob × Hack2Skill 'India.Runs' hackathon, powered by Gemini AI, Web Speech API, and Firebase.",
     github: 'https://github.com/pawan2611/SAATHI',
     proxy: 'https://github.com/pawan2611/Saathi-Proxy',
     live: 'https://pawan2611.github.io/SAATHI/',
@@ -97,7 +97,7 @@ const webProjects = [
   },
 ];
 
-const all = [...pythonProjects, ...webProjects, ...aiProjects];
+const all = [...aiProjects, ...pythonProjects, ...webProjects];
 const FILTERS = ['All', 'Python', 'Web', 'AI'];
 
 function ProjectCard({ project }) {
@@ -184,11 +184,11 @@ function Projects() {
             {f}
           </button>
         ))}
-        {
+        {/* {
         <span className="project-count-badge">
           {visible.length} project{visible.length !== 1 ? 's' : ''}
         </span>
-        }
+        } */}
       </div>
 
       <div className="project-grid">
