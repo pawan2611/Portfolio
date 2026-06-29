@@ -101,6 +101,12 @@ const all = [...pythonProjects, ...webProjects];
 const FILTERS = ['All', 'Python', 'Web'];
 
 function ProjectCard({ project }) {
+  const isPython = project.category === 'python';
+  const linkUrl = project.github || project.live;
+  const linkLabel = project.github ? 'GitHub ↗' : 'Live ↗';
+
+  
+
   const links = [
   project.github && { href: project.github, label: 'GitHub ↗' },
   project.proxy && { href: project.proxy, label: 'Proxy API ↗' },
