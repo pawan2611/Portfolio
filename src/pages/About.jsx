@@ -80,7 +80,7 @@ function About() {
       </p>
 
       <div className="about-btn-row">
-        <a href="/Pawan-Kumar-CV.pdf" target="_blank" rel="noreferrer" className="btn-primary">
+        <a href="https://drive.google.com/file/d/1bVGKcvAIxoZyGFVTtUpVO8SujAlK9ply/view?usp=sharing" target="_blank" rel="noreferrer" className="btn-primary">
           Download CV
         </a>
         <Link to="/contact" className="btn-ghost">

@@ -56,7 +56,7 @@ function Home() {
         </p>
 
         <div className="home-cta-row fade-up delay-5">
-          <a href="/Pawan-Kumar-CV.pdf" target="_blank" rel="noreferrer" className="btn-primary">
+          <a href="https://drive.google.com/file/d/1bVGKcvAIxoZyGFVTtUpVO8SujAlK9ply/view?usp=sharing" target="_blank" rel="noreferrer" className="btn-primary">
             View Resume
           </a>
           <Link to="/projects" className="btn-ghost">

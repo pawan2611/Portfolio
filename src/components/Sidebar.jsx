@@ -11,7 +11,7 @@ const navItems = [
 const socials = [
   { href: 'https://www.linkedin.com/in/pawankumar2611/', icon: '/linkedin.svg', label: 'LinkedIn' },
   { href: 'https://github.com/pawan2611', icon: '/github.svg', label: 'GitHub' },
-  { href: '/Pawan-Kumar-CV.pdf', icon: '/cv.svg', label: 'CV' },
+  { href: 'https://drive.google.com/file/d/1bVGKcvAIxoZyGFVTtUpVO8SujAlK9ply/view?usp=sharing', icon: '/cv.svg', label: 'CV' },
   { href: 'mailto:kumarp8304@gmail.com', icon: '/gmail.svg', label: 'Email' },
 ];
 
